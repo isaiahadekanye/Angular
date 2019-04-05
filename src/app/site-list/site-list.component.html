@@ -1,0 +1,95 @@
+<div class="wrapper">
+  <div *ngIf="viewer">
+    <table>
+      <tr>
+        <td class="question">
+          <label>Name:</label>
+        </td>
+        <td class="answerbox">
+          <input #itemName />
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Short Description: </label>
+        </td>
+        <td class="answerbox">
+          <textarea #itemShortDescription rows="5" cols="30"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Full Description: </label>
+        </td>
+        <td class="answerbox">
+          <textarea #itemFullDescription rows="5" cols="30"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Image:</label>
+        </td>
+        <td class="answerbox">
+          <textarea #itemImage rows="5" cols="30"></textarea>
+        </td>
+      </tr>
+    </table>
+    <button
+      (click)="save(itemName.value, itemShortDescription.value, itemFullDescription.value, itemImage.value); itemName.value='';itemShortDescription.value=''; itemFullDescription.value=''; itemImage.value=''">save</button>
+  </div>
+
+  <header>
+    <div class="left-div">
+      <h2>List Name <span>{{countnew}}</span></h2>
+      <p>Total {{count}}</p>
+    </div>
+    <div class="right-div">
+      <div class="center-elements">
+        <i class="fas fa-plus" (click)="add()"></i>
+        <i class="fas fa-caret-down" (click)="hide()"></i>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="individual-items" *ngFor="let item of items">
+      <a class="links" routerLink="/detail/{{item.id}}">
+        <div class="left-div-new" *ngIf="item.newitem; else old">
+          <div class="imagediv">
+            <img *ngIf="item.image.length > 0 ; else default" src="{{item.image}}" alt="image">
+            <ng-template #default>
+              <img src="https://picsum.photos/200/300" alt="image">
+            </ng-template>
+          </div>
+          <div class="textdiv">
+            <h3>{{item.name}}</h3>
+            <h4>{{item.shortDescription}}</h4>
+            <p>{{item.fullDescription}}</p>
+            <p> <i class="fas fa-calendar"></i> {{currentDate | date:'EEE MMM dd yyyy'}}</p>
+          </div>
+        </div>
+        <ng-template #old>
+          <div class="left-div">
+            <div class="imagediv">
+              <img *ngIf="item.image.length > 0 ; else default" src="{{item.image}}" alt="image">
+              <ng-template #default>
+                <img src="https://picsum.photos/200/300" alt="image">
+              </ng-template>
+            </div>
+            <div class="textdiv">
+              <h3>{{item.name}}</h3>
+              <h4>{{item.shortDescription}}</h4>
+              <p>{{item.fullDescription}}</p>
+              <p> <i class="fas fa-calendar"></i> {{currentDate | date:'EEE MMM dd yyyy'}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </a>
+      <div class="right-div">
+        <div class="center-elements">
+          <i class="fas fa-ellipsis-v" (click)="delete(item)"></i>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

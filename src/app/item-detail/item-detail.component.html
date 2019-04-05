@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div *ngIf="item">
+    <h2>{{item.name}} Details</h2>
+    <div><span>id: </span>{{item.id}}</div>
+    <table>
+      <tr>
+        <td class="question">
+          <label>Name:</label>
+        </td>
+        <td class="answerbox">
+          <input [(ngModel)]="item.name" placeholder="name" />
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Short Description: </label>
+        </td>
+        <td class="answerbox">
+          <textarea name="short description" rows="5" cols="30" [(ngModel)]="item.shortDescription"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Full Description: </label>
+        </td>
+        <td class="answerbox">
+          <textarea name="full description" rows="5" cols="30" [(ngModel)]="item.fullDescription"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <label>Image:</label>
+        </td>
+        <td class="answerbox">
+          <textarea name="image" rows="5" cols="30" [(ngModel)]="item.image"></textarea>
+        </td>
+      </tr>
+    </table>
+    <button (click)="save()">save</button>
+  </div>
+</div>
